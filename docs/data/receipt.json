@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-09-09T05:45:48.476018Z",
+  "endpoint": "https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/listings/latest",
+  "evidence_sha256": "82346b3688674e24fe54f8ca38f4c8ed4183d6198cabe6263deeebda9d1bb371",
+  "query": {
+    "convert": "USD",
+    "limit": 3,
+    "start": 1
+  },
+  "schema_version": "marketproof.receipt.v1",
+  "source_response_sha256": "74daaccd1a2d1d6cc6d412109d03f2e2804871b821cf7d5f97bda9d75ce622c2"
+}
