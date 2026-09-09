@@ -38,3 +38,10 @@ The build does not imply hackathon registration or Startup-tier entitlement. Tho
 ## Intended hackathon track
 
 **AI Agents & Automation.** The useful primitive is not another price table; it is provenance-aware market evidence an agent can inspect, cite, compare, and reject when the source is stale or structurally invalid.
+
+## Live demo
+
+- Public demo: https://nymrel.github.io/nymrel-marketproof/
+- Public repository: https://github.com/nymrel/nymrel-marketproof
+- Hosted CI: passing on current main
+

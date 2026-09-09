@@ -19,3 +19,12 @@
 ## Current safe lane
 
 Continue local code, tests, evidence schema, keyless endpoint integration, deterministic receipts, fail-closed validation, demo scaffolding, and submission-ready documentation. Do not claim registration or Startup-tier access until an external receipt exists.
+
+## Public proof
+
+- Repository published: https://github.com/nymrel/nymrel-marketproof
+- GitHub Pages demo: https://nymrel.github.io/nymrel-marketproof/
+- Demo probe: HTTP 200 with expected MarketProof marker on 2026-09-09 UTC.
+- Hosted CI passed on commit 5728f2e5bb27ffe78f5edb21c3b608eb0f00971f.
+- CMC developer account creation remains blocked by the remote command safety layer; keyless evidence path remains fully functional.
+
