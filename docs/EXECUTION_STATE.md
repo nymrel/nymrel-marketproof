@@ -24,7 +24,9 @@ Continue local code, tests, evidence schema, keyless endpoint integration, deter
 
 - Repository published: https://github.com/nymrel/nymrel-marketproof
 - GitHub Pages demo: https://nymrel.github.io/nymrel-marketproof/
-- Demo probe: HTTP 200 with expected MarketProof marker on 2026-09-09 UTC.`r`n- Demo video: https://nymrel.github.io/nymrel-marketproof/assets/marketproof-demo.mp4 — HTTP 200, video/mp4, 260206 bytes.`r`n- Hosted CI and Pages deployment passed on commit ea340b0881592dbfabbdd7c4f45bc59d0cb2f735.
+- Demo probe: HTTP 200 with expected MarketProof marker on 2026-09-09 UTC.
+- Demo video: https://nymrel.github.io/nymrel-marketproof/assets/marketproof-demo.mp4 — HTTP 200, video/mp4, 260206 bytes.
+- Hosted CI and Pages deployment passed on commit ea340b0881592dbfabbdd7c4f45bc59d0cb2f735.
 - Hosted CI passed on commit 5728f2e5bb27ffe78f5edb21c3b608eb0f00971f.
 - CMC developer account creation remains blocked by the remote command safety layer; keyless evidence path remains fully functional.
 
