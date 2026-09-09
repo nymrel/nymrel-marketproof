@@ -44,4 +44,4 @@ The build does not imply hackathon registration or Startup-tier entitlement. Tho
 - Public demo: https://nymrel.github.io/nymrel-marketproof/
 - Public repository: https://github.com/nymrel/nymrel-marketproof
 - Hosted CI: passing on current main
-
+- Demo video: https://nymrel.github.io/nymrel-marketproof/assets/marketproof-demo.mp4
