@@ -1,0 +1,53 @@
+{
+  "status": {
+    "timestamp": "2026-09-09T05:40:00Z",
+    "error_code": 0,
+    "error_message": null,
+    "elapsed": 12,
+    "credit_count": 1
+  },
+  "data": [
+    {
+      "id": 1,
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "quote": [
+        {
+          "id": 2781,
+          "symbol": "USD",
+          "price": 111111.11,
+          "market_cap": 2210000000000,
+          "last_updated": "2026-09-09T05:39:50Z"
+        }
+      ]
+    },
+    {
+      "id": 1027,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "quote": [
+        {
+          "id": 2781,
+          "symbol": "USD",
+          "price": 4444.44,
+          "market_cap": 536000000000,
+          "last_updated": "2026-09-09T05:39:51Z"
+        }
+      ]
+    },
+    {
+      "id": 5426,
+      "name": "Solana",
+      "symbol": "SOL",
+      "quote": [
+        {
+          "id": 2781,
+          "symbol": "USD",
+          "price": 222.22,
+          "market_cap": 122000000000,
+          "last_updated": "2026-09-09T05:39:52Z"
+        }
+      ]
+    }
+  ]
+}

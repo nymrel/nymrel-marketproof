@@ -1,0 +1,39 @@
+{
+  "captured_at": "2026-09-09T05:45:48.476018Z",
+  "endpoint": "https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/listings/latest",
+  "freshness_seconds": 0.0,
+  "observations": [
+    {
+      "cmc_id": 1,
+      "last_updated": "2026-09-09T05:45:00.000Z",
+      "market_cap_usd": 1584848318997.9675,
+      "name": "Bitcoin",
+      "price_usd": 78920.01584716035,
+      "symbol": "BTC"
+    },
+    {
+      "cmc_id": 1027,
+      "last_updated": "2026-09-09T05:45:00.000Z",
+      "market_cap_usd": 304530679845.5327,
+      "name": "Ethereum",
+      "price_usd": 2495.4857318711975,
+      "symbol": "ETH"
+    },
+    {
+      "cmc_id": 825,
+      "last_updated": "2026-09-09T05:44:00.000Z",
+      "market_cap_usd": 183442934637.9123,
+      "name": "Tether USDt",
+      "price_usd": 0.999905925956458,
+      "symbol": "USDT"
+    }
+  ],
+  "query": {
+    "convert": "USD",
+    "limit": 3,
+    "start": 1
+  },
+  "schema_version": "marketproof.v1",
+  "source": "CoinMarketCap Keyless Public API",
+  "source_timestamp": "2026-09-09T05:45:48.594000Z"
+}
