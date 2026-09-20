@@ -1,10 +1,15 @@
 from __future__ import annotations
 
 import json
+import sys
 import unittest
 import urllib.error
+from pathlib import Path
 
-from cmc_pro import CMCProError, QUOTES_PATH, build_request, fetch_pro_json
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from marketproof.cmc_pro import CMCProError, QUOTES_PATH, build_request, fetch_pro_json
 
 FIXTURE_KEY = "fixture-key-never-sent-live"
 
