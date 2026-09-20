@@ -6,7 +6,12 @@ This repository was created after the official Build with CMC 2026 window opened
 
 ## Current boundary
 
-The current implementation uses only CoinMarketCap's Keyless Public API. It does not require or read an API key and never sends an `X-CMC_PRO_API_KEY` header.
+MarketProof has two intentionally separate read-only paths:
+
+- The shipped capture CLI uses CoinMarketCap's Keyless Public API. It does not require or read an API key and never sends an `X-CMC_PRO_API_KEY` header.
+- The authenticated client in `src/marketproof/cmc_pro.py` is opt-in preparation for the organizer-required campaign proof. It accepts a caller-supplied key only at the explicit call boundary, sends it only in the `X-CMC_PRO_API_KEY` header, and does not read accounts, environment variables, files, logs, or persistent storage.
+
+No authenticated live call or campaign entitlement is claimed until a sanitized receipt is committed.
 
 Permanent product boundary:
 
@@ -29,11 +34,11 @@ python -m unittest discover -s tests -v
 python -m marketproof.cli capture --limit 3
 ```
 
-The capture command writes a normalized evidence packet and receipt under `artifacts/live/`. It refuses authenticated URLs and never consumes local secrets.
+The capture command writes a normalized evidence packet and receipt under `artifacts/live/`. It refuses authenticated URLs and never consumes local secrets. The authenticated client is a tested library boundary only; it is not invoked by this command and performs no autonomous network action.
 
 ## External gates still separate
 
-The build does not imply hackathon registration or Startup-tier entitlement. Those require a CMC API account plus DoraHacks registration with the matching CMC account email. Publication and submission artifacts remain separate release actions.
+The public repository, Pages demo, and demo video are live. They do not imply hackathon registration, Startup-tier entitlement, or authenticated-key compliance. Those still require the existing CMC API account plus DoraHacks registration with the matching CMC account email, mandatory human verification, and one bounded campaign-key proof. Final DoraHacks submission and the required X post remain separate release actions.
 
 ## Intended hackathon track
 
