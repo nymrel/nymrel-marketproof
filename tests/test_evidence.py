@@ -4,7 +4,7 @@ import copy
 import json
 import sys
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,6 +50,31 @@ class EvidenceTests(unittest.TestCase):
         payload["status"]["timestamp"] = "2026-09-09T05:00:00Z"
         with self.assertRaisesRegex(EvidenceError, "stale"):
             self.build(payload)
+
+    def test_rejects_stale_quote_in_fresh_response(self) -> None:
+        payload = copy.deepcopy(self.payload)
+        payload["data"][0]["quote"][0]["last_updated"] = "2020-01-01T00:00:00Z"
+        with self.assertRaisesRegex(EvidenceError, "quote.*stale"):
+            self.build(payload)
+
+    def test_rejects_future_quote_in_fresh_response(self) -> None:
+        payload = copy.deepcopy(self.payload)
+        payload["data"][1]["quote"][0]["last_updated"] = "2027-01-01T00:00:00Z"
+        with self.assertRaisesRegex(EvidenceError, "quote.*future"):
+            self.build(payload)
+
+    def test_quote_freshness_boundaries_use_configured_window(self) -> None:
+        for delta, accepted in ((-60, True), (-61, False), (30, True), (31, False)):
+            with self.subTest(seconds_from_capture=delta):
+                payload = copy.deepcopy(self.payload)
+                payload["data"][0]["quote"][0]["last_updated"] = (
+                    self.now + timedelta(seconds=delta)
+                ).isoformat()
+                if accepted:
+                    self.build(payload, max_age_seconds=60)
+                else:
+                    with self.assertRaises(EvidenceError):
+                        self.build(payload, max_age_seconds=60)
 
     def test_rejects_api_error(self) -> None:
         payload = copy.deepcopy(self.payload)

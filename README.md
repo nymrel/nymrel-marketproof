@@ -21,6 +21,7 @@ Permanent product boundary:
 - no wallet signing or token transfer
 - no payment or x402 execution
 - fail closed on malformed, stale, partial, mismatched, or API-error responses
+- apply the freshness window to both the response timestamp and every USD quote timestamp
 
 ## First proof
 
