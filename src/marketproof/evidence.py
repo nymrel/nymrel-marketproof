@@ -59,7 +59,25 @@ def _require_number(value: Any, field: str) -> float:
     return number
 
 
-def _normalize_row(row: Any, index: int) -> dict[str, Any]:
+def _check_freshness(
+    timestamp: datetime,
+    observed_at: datetime,
+    max_age_seconds: int,
+    field: str,
+) -> float:
+    age_seconds = (observed_at - timestamp).total_seconds()
+    if age_seconds < -30:
+        raise EvidenceError(f"{field} is implausibly in the future")
+    if age_seconds > max_age_seconds:
+        raise EvidenceError(
+            f"{field} is stale: {age_seconds:.1f}s > {max_age_seconds}s"
+        )
+    return age_seconds
+
+
+def _normalize_row(
+    row: Any, index: int, observed_at: datetime, max_age_seconds: int
+) -> dict[str, Any]:
     item = _require_mapping(row, f"data[{index}]")
     asset_id = item.get("id")
     if isinstance(asset_id, bool) or not isinstance(asset_id, int) or asset_id <= 0:
@@ -83,7 +101,10 @@ def _normalize_row(row: Any, index: int) -> dict[str, Any]:
     last_updated = _require_text(
         usd.get("last_updated"), f"data[{index}].quote[USD].last_updated"
     )
-    _parse_utc(last_updated, f"data[{index}].quote[USD].last_updated")
+    quote_field = f"data[{index}].quote[USD].last_updated"
+    _check_freshness(
+        _parse_utc(last_updated, quote_field), observed_at, max_age_seconds, quote_field
+    )
 
     observation = {
         "cmc_id": asset_id,
@@ -117,18 +138,17 @@ def build_evidence_packet(
         )
     source_time = _parse_utc(status.get("timestamp"), "status.timestamp")
     observed_at = (captured_at or datetime.now(timezone.utc)).astimezone(timezone.utc)
-    age_seconds = (observed_at - source_time).total_seconds()
-    if age_seconds < -30:
-        raise EvidenceError("CMC source timestamp is implausibly in the future")
-    if age_seconds > max_age_seconds:
-        raise EvidenceError(
-            f"CMC response is stale: {age_seconds:.1f}s > {max_age_seconds}s"
-        )
+    age_seconds = _check_freshness(
+        source_time, observed_at, max_age_seconds, "CMC source timestamp"
+    )
 
     rows = root.get("data")
     if not isinstance(rows, list) or not rows:
         raise EvidenceError("data must be a non-empty list")
-    observations = [_normalize_row(row, index) for index, row in enumerate(rows)]
+    observations = [
+        _normalize_row(row, index, observed_at, max_age_seconds)
+        for index, row in enumerate(rows)
+    ]
     if expected_count is not None and len(observations) != expected_count:
         raise EvidenceError(
             f"observation count mismatch: expected {expected_count}, got {len(observations)}"
