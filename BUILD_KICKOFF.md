@@ -8,3 +8,7 @@
 - External actions intentionally excluded from this local kickoff: account creation, hackathon registration, public GitHub publication, deployment, X posting, and final submission.
 
 All MarketProof source, fixtures, tests, receipts, and demo code in this repository are authored during the official build window.
+
+## Maintenance after the competition window
+
+The in-window authorship statement above describes the initial competition build. Later open-source maintenance is separate and is not claimed as competition-window work.
